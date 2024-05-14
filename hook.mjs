@@ -12,12 +12,13 @@ export async function resolve(specifier, context, parentResolve) {
 }
 
 export async function load(url, context, parentLoad) {
-  const iitmURL = new URL('lib/register.js', import.meta.url).toString();
+  const iitmURL = new URL('lib/register.mjs', import.meta.url).toString();
   if (url === 'node:util?foo=bar') {
+    console.log(iitmURL)
     return {
       shortCircuit: true,
       format: 'module',
-      source: `import '${iitmURL}'; import util from 'node:util'; export * from 'node:util'; export default util;`
+      source: `import '${iitmURL}'; export * from 'node:util';`
     }
   }
   return parentLoad(url, context, parentLoad);
