@@ -1,5 +1,3 @@
-import path from 'node:path';
-
 export async function resolve(specifier, context, parentResolve) {
   const url = await parentResolve(specifier, context, parentResolve);
 
